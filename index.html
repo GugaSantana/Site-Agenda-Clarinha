@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agenda · Ana Clara</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Setup Screen (shown when Firebase isn't configured) -->
+  <div class="setup-overlay" id="setupOverlay" hidden>
+    <div class="setup-card">
+      <div class="setup-icon">⚙️</div>
+      <h2>Configurar Firebase</h2>
+      <p>Para a agenda funcionar em qualquer dispositivo, você precisa adicionar a configuração do Firebase no arquivo <code>app.js</code>.</p>
+      <ol>
+        <li>Acesse <a href="https://console.firebase.google.com" target="_blank" rel="noopener">console.firebase.google.com</a></li>
+        <li>Crie um projeto gratuito</li>
+        <li>Crie um banco Firestore em modo teste</li>
+        <li>Vá em ⚙️ → Configurações do projeto → Seus apps → Web</li>
+        <li>Copie o objeto <code>firebaseConfig</code> e cole no <code>app.js</code></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+    <div class="loading-dot"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-bg-circle"></div>
+    <div class="header-inner">
+      <p class="header-label">agenda pessoal</p>
+      <h1>Ana Clara</h1>
+      <p class="header-date" id="headerDate"></p>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Hoje (destaque) ── -->
+    <section class="card card--today" id="todaySection">
+      <div class="section-header">
+        <h2>Hoje <span class="accent-dot">✦</span></h2>
+        <span class="badge" id="todayCount">0</span>
+      </div>
+      <ul class="task-list" id="todayList">
+        <li class="empty-state">Nenhuma tarefa para hoje 🌸</li>
+      </ul>
+    </section>
+
+    <!-- ── Nova Tarefa ── -->
+    <section class="card card--form">
+      <h3 class="section-label">Nova Tarefa</h3>
+      <form id="taskForm">
+        <div class="form-row">
+          <input
+            type="text"
+            id="taskText"
+            placeholder="O que você precisa fazer?"
+            maxlength="200"
+            autocomplete="off"
+            required
+          />
+          <input type="date" id="taskDate" required />
+          <button type="submit">Adicionar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ── Pendentes ── -->
+    <section class="card" id="pendingSection">
+      <h3 class="section-label">Outras Pendentes</h3>
+      <ul class="task-list" id="pendingList">
+        <li class="empty-state">Nenhuma outra tarefa pendente ✨</li>
+      </ul>
+    </section>
+
+    <!-- ── Concluídas ── -->
+    <section class="card card--completed" id="completedSection">
+      <h3 class="section-label">Concluídas</h3>
+      <ul class="task-list" id="completedList">
+        <li class="empty-state">Nenhuma tarefa concluída ainda</li>
+      </ul>
+    </section>
+
+    <!-- ── Divisor ── -->
+    <div class="section-divider">
+      <span>rolês pendentes</span>
+    </div>
+
+    <!-- ── Rolês Pendentes ── -->
+    <section class="card card--plans">
+      <div class="section-header">
+        <h2>Rolês Pendentes <span class="plans-dot">♡</span></h2>
+        <span class="badge badge--plans" id="plansCount">0</span>
+      </div>
+      <ul class="task-list" id="plansList">
+        <li class="empty-state">Nenhum rolê ainda ✨</li>
+      </ul>
+    </section>
+
+    <!-- ── Adicionar Rolê ── -->
+    <section class="card card--form card--plans-form">
+      <h3 class="section-label">Novo Rolê</h3>
+      <form id="planForm">
+        <div class="form-row">
+          <input
+            type="text"
+            id="planText"
+            placeholder="O que queremos fazer juntos?"
+            maxlength="200"
+            autocomplete="off"
+            required
+          />
+          <button type="submit" class="btn--plans">Adicionar</button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>feito com 💛 para a Ana Clara</p>
+  </footer>
+
+  <!-- canvas-confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- Firebase via CDN (ES modules) -->
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>
