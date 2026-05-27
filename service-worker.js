@@ -1,17 +1,7 @@
-const CACHE_NAME = 'agenda-clarinha-v5';
-const ASSETS = [
-  './',
-  './index.html',
-  './style.css',
-  './app.js',
-  './manifest.json'
-];
+const CACHE_NAME = 'agenda-clarinha-v6';
 
-// Instala e faz cache dos arquivos principais
+// Instala e assume controle imediatamente (sem pré-cache que causava falha no subdiretório)
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
-  );
   self.skipWaiting();
 });
 
