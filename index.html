@@ -150,7 +150,12 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js');
+        navigator.serviceWorker.register('./service-worker.js').then(reg => {
+          // Quando um novo SW assume o controle, recarrega para pegar conteúdo atualizado
+          navigator.serviceWorker.addEventListener('controllerchange', () => {
+            window.location.reload();
+          });
+        });
       });
     }
   </script>
