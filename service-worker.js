@@ -1,4 +1,4 @@
-const CACHE_NAME = 'agenda-clarinha-v6';
+const CACHE_NAME = 'agenda-clarinha-v7';
 
 // Instala e assume controle imediatamente (sem pré-cache que causava falha no subdiretório)
 self.addEventListener('install', event => {
